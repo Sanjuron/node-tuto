@@ -3,12 +3,23 @@ const http = require('http');
 const { url } = require('inspector');
 const fs = require('fs');
 
+const _ = require('lodash');
 //méthode pour créer un serveur. Cette méthode est lancée à chaque fois qu'une requête au serveur est faite
  const server = http.createServer((req, res) => {
-    console.log(req.url, req.method);
 
     //set header content type
     res.setHeader('Content-type', "text/html");
+
+    //lodash
+    const num =  _.random(0, 20);
+    console.log(num);
+
+    const greet = _.once(() => {
+        console.log("hello");
+    });
+
+    greet();
+    greet();
 
     //mise en place d'un système de routing simple avec les status codes
     let path = './views/';
